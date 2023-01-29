@@ -10,7 +10,6 @@ router.post('/register', async (req, res) => {
         let createdUser = await authService.registerUser(req.body);
         res.status(201).json({ _id: createdUser._id });
     } catch (error) {
-        console.log(error)
         res.status(404).json({ error: error.message })
     }
 });
@@ -39,6 +38,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/getUser', async (req, res) => {
+
     if (req.user) {
         let user = await authService.getUser(req.user._id);
         res.status(200).json({user: {_id: user._id, name: user.name, email: user.email, 

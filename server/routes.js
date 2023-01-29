@@ -6,13 +6,16 @@ const messageController = require('./controllers/messageController');
 const isAuth = require('./middlewares/isAuth');
 
 router.get('/', (req, res) => {
-    res.send('Server is running')
+    try {
+        res.send('Server is running')
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 router.use('/auth', authController);
 router.use('/products', productController);
 router.use('/user', userController);
 router.use('/messages', messageController);
-
 
 module.exports = router;

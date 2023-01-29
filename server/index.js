@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const { PORT } = require('./config/config');
 const http = require('http').createServer(app);
-const auth = require('./middlewares/auth')
+const auth = require('./middlewares/auth');
 const routes = require('./routes');
+const cors = require('cors');
 require("dotenv").config();
 require('./config/express')(app);
 require('./config/mongoose');
+
 app.use(auth())
 
 // const io = require("socket.io")(http, {

@@ -76,7 +76,7 @@ router.post('/create', async (req, res) => {
         if (!category) errors.push('Category is required; ');
 
         if (errors.length >= 1) throw { message: [errors] };
-
+    
         let compressedImg = await productService.uploadImage(image);
         let product = new Product({
             title, price, description, city, category,
