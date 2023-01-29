@@ -70,7 +70,8 @@ function Categories({ match }) {
                         <Dropdown.Item onClick={() => { setSort('biggerPrice') }}>Price <BiSortUp /> </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                {!loading ?
+
+                {!loading && products.length > 0 &&
                     <InfiniteScroll
                         dataLength={products.length}
                         next={() => {
@@ -110,10 +111,12 @@ function Categories({ match }) {
                                 </Col>
                             )}
                     </InfiniteScroll>
-                    : <div className="spinner">
-                        <Spinner animation="border" />
-                    </div>
                 }
+
+                {loading && products.length > 0 && <div className="spinner"><Spinner animation="border" /></div>}
+                
+                {!loading && products.length === 0 && <p>NO DATA</p>}
+
             </div>
         </>
     )

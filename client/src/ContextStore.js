@@ -1,22 +1,25 @@
 import React, { useState, useEffect, useMemo } from 'react';
-// import { useCookies } from 'react-cookie'
+import { useCookies } from 'react-cookie'
+// import Cookies from '/path/to/js.cookie.mjs';
 export const Context = React.createContext();
 
 export const ContextStore = ({ children }) => {
     let initialValue = null;
-    // const [cookies, setCookie, removeCookie] = useCookies(['USER_SESSION']);
+    const [cookies, setCookie, removeCookie] = useCookies('USER_SESSION');
     const [userData, setUserData] = useState(initialValue)
     
     useEffect(() => {
-        //if (cookies.USER_SESSION) {
-            fetch(`/auth/getUser`).then(res => res.json())
+       
+        if (!cookies.USER_SESSION) {
+            ( async () => {
+                await fetch(`/auth/getUser`).then(res => res.json())
                 .then(res => {
                     return setUserData(res.user)
                 })
-        //}
+            })() 
+        }
     }, [])
 
-    // console.log(userData)
     const providerValue = useMemo(() => ({ userData, setUserData }), [userData, setUserData])
 
     return (
