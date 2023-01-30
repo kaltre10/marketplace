@@ -9,7 +9,8 @@ require("dotenv").config();
 require('./config/express')(app);
 require('./config/mongoose');
 
-app.use(auth())
+app.use(auth()) 
+app.use(cors()) 
 
 // const io = require("socket.io")(http, {
 //     cors: {
