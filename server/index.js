@@ -9,8 +9,13 @@ require("dotenv").config();
 require('./config/express')(app);
 require('./config/mongoose');
 
-app.use(auth()) 
 app.use(cors()) 
+app.use(auth()) 
+
+// app.use(cors({
+//     origin: '*', // Permitir solo solicitudes desde este origen
+//     credentials: true, // Permitir credenciales (cookies, autenticación HTTP)
+//   }));
 
 // const io = require("socket.io")(http, {
 //     cors: {
@@ -54,5 +59,6 @@ app.use(cors())
 
 
 app.use(routes);
-http.listen(PORT, () => console.log(`Server is running at http://localhost:${PORT}...`));
-// app.listen(PORT, () => console.log(`Server is listening on port ${PORT}...`));
+
+// http.listen(PORT, () => console.log(`Server is running at http://localhost:${PORT}...`));
+app.listen(PORT, () => console.log(`Server is listening on port ${PORT}...`));

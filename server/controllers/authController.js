@@ -15,6 +15,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', (req, res) => {
+    
     authService.loginUser(req.body)
         .then(token => {
             jwt.verify(token, SECRET, (err, decoded) => {
