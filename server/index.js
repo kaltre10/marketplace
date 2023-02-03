@@ -9,13 +9,13 @@ require("dotenv").config();
 require('./config/express')(app);
 require('./config/mongoose');
 
-app.use(cors()) 
+// app.use(cors()) 
 app.use(auth()) 
 
-// app.use(cors({
-//     origin: '*', // Permitir solo solicitudes desde este origen
-//     credentials: true, // Permitir credenciales (cookies, autenticación HTTP)
-//   }));
+app.use(cors({
+    origin: 'https://marketplace-front.netlify.app/', // Permitir solo solicitudes desde este origen
+    credentials: true, // Permitir credenciales (cookies, autenticación HTTP)
+  }));
 
 // const io = require("socket.io")(http, {
 //     cors: {
