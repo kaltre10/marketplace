@@ -13,9 +13,9 @@ router.get('/', (req, res) => {
     }
 })
 
-router.use('/auth', authController);
-router.use('/products', productController);
-router.use('/user', userController);
-router.use('/messages', messageController);
+router.use('/api/auth', authController);
+router.use('/api/products', productController);
+router.use('/api/user', userController);
+router.use('/api/messages', messageController);
 
 module.exports = router;

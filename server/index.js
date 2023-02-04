@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const { PORT } = require('./config/config');
-const http = require('http').createServer(app);
+// const http = require('http').createServer(app);
 const auth = require('./middlewares/auth');
 const routes = require('./routes');
 const cors = require('cors');
@@ -13,7 +13,7 @@ require('./config/mongoose');
 app.use(auth()) 
 
 app.use(cors({
-    origin: 'https://marketplace-front.netlify.app/', // Permitir solo solicitudes desde este origen
+    origin: 'https://marketplace-front.netlify.app', // Permitir solo solicitudes desde este origen
     credentials: true, // Permitir credenciales (cookies, autenticación HTTP)
   }));
 
