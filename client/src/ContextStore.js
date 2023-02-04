@@ -9,16 +9,17 @@ export const ContextStore = ({ children }) => {
     const [userData, setUserData] = useState(initialValue)
     
     useEffect(() => {
-       
+        console.log(cookies.USER_SESSION)
         if (!cookies.USER_SESSION) {
             ( async () => {
-                await fetch(`/auth/getUser`).then(res => res.json())
+                await fetch(`${process.env.REACT_APP_BASE_URL}/api/auth/getUser`, { credentials: 'include' })
+                .then(res => res.json())
                 .then(res => {
                     return setUserData(res.user)
                 })
             })() 
         }
-    }, [])
+    }, [cookies])
 
     const providerValue = useMemo(() => ({ userData, setUserData }), [userData, setUserData])
 
